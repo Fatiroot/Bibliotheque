@@ -75,7 +75,24 @@ class User {
         $hashedPassword = password_hash($this->password, PASSWORD_DEFAULT);
         $query = "INSERT INTO `User`(`fullname`, `lastname`, `email`, `password`, `phone`) VALUES ('$this->fullname','$this->lastname','$this->email','$this->phone','$this->password')";
         $result = mysqli_query($this->database, $query);
-        return $result;
+        // return $result;
+        if ($result) {
+            $lastId = mysqli_insert_id($this->database);
+            $queryRole = "INSERT INTO use_role (user_id, role_id) VALUES ($lastId, 2)";
+            $resultRole = mysqli_query($this->database, $queryRole);
+
+            if ($resultRole) {
+                return true;
+            } else {
+                echo "Error adding user role";
+            }
+
+            return false;
+        } else {
+            echo "Error adding user";
+        }
+
+        return false;
     }
 
     public function getUsers(){
