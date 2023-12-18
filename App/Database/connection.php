@@ -1,7 +1,7 @@
 <?php
 include __DIR__ .'/../../vendor/autoload.php';
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
 $dotenv->load();
 
 class Database {
@@ -18,9 +18,9 @@ class Database {
         $this->dbname = $_ENV['DB_NAME'];
     }
 
-    public function Connection() {
-        $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
-        if (!$this->conn) {
+    public static function Connection() {
+        self::$conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+        if (!self::$conn) {
             die("Connection failed: " . $this->conn->connect_error);
         }
 
