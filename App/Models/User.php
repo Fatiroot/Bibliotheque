@@ -12,7 +12,7 @@ class User {
     private $phone;
    
 
-    public function __construct($fullname,$lastname,$email,$phone, $password,) {
+    public function __construct($fullname,$lastname,$email, $password, $phone) {
         $this->database = Database::Connection();
         $this->fullname=$fullname;
         $this->lastname=$lastname;
@@ -66,14 +66,15 @@ class User {
    
 
     public function getUserByEmailName(){
-        $select = "SELECT * FROM `User` WHERE `email` = '$this->email' OR `fullname`='$this->fullname' OR `lastname`='$this->lastname'";
-        $result = mysqli_query($this->database, $select);
+        // $select = "SELECT * FROM `User` WHERE `email` = '$this->email' OR `fullname`='$this->fullname' OR `lastname`='$this->lastname'";
+        $query = "SELECT u.*, ur.role_id, r.name FROM user AS u INNER JOIN use_role AS ur ON u.id = ur.user_id INNER JOIN role AS r ON ur.role_id = r.id WHERE  `email` = '$this->email' OR `fullname`='$this->fullname' OR `lastname`='$this->lastname'";
+        $result = mysqli_query($this->database, $query);
         return $result;
 
     }
     public function insertUser(){
         $hashedPassword = password_hash($this->password, PASSWORD_DEFAULT);
-        $query = "INSERT INTO `User`(`fullname`, `lastname`, `email`, `password`, `phone`) VALUES ('$this->fullname','$this->lastname','$this->email','$this->phone','$this->password')";
+        $query = "INSERT INTO `User`(`fullname`, `lastname`, `email`, `password`, `phone`) VALUES ('$this->fullname','$this->lastname','$this->email','$this->password','$this->phone')";
         $result = mysqli_query($this->database, $query);
         // return $result;
         if ($result) {
@@ -88,17 +89,20 @@ class User {
             }
 
             return false;
-        } else {
-            echo "Error adding user";
-        }
-
-        return false;
     }
+}
 
-    public function getUsers(){
-        $query = "SELECT * FROM `user`";
-        $result = mysqli_query($this->database,  $query);
-        return $result;
+public function getUsers(){
+    $query = "SELECT u.*, ur.role_id, r.name FROM user AS u INNER JOIN user_role AS ur ON u.id = ur.user_id INNER JOIN role AS r ON ur.role_id = r.id";
+    $result = mysqli_query($this->database, $query);
+    $users = array();
+    while($row = $result->fetch_assoc()){
+        $user = new User($row['fullname'], $row['lastname'], $row['email'], $row['phone'], $row['password']);
+        
+        $users[] = $user;
     }
+    
+    return $users;
+}
 }
 ?>

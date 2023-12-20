@@ -1,4 +1,4 @@
- CREATE DATABASE Bibilotheque;
+ CREATE DATABASE biblio;
 
  CREATE TABLE `User` (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -6,8 +6,7 @@
     lastname VARCHAR (255) NOT NULL,
     email VARCHAR (255) NOT NULL,
     password VARCHAR (255) NOT NULL,
-    phone VARCHAR (255) NOT NULL,
-    budget FLOAT  
+    phone VARCHAR (255) NOT NULL, 
 
  );
  CREATE TABLE Role (
