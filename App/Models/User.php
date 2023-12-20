@@ -10,6 +10,7 @@ class User {
     private $email;
     private $password;
     private $phone;
+    private $role;
    
 
     public function __construct($fullname,$lastname,$email, $password, $phone) {
@@ -42,6 +43,10 @@ class User {
     public function setPhone($phone) {
         $this->phone = $phone;
     }
+    public function setRole($role) {
+        $this->role = $role;
+    }
+  
   
 
        // Getters
@@ -61,9 +66,11 @@ class User {
     }
 
     public function getPhone() {
-        return $this->Phone;
+        return $this->phone;
     }
-   
+    public function getRole() {
+        return $this->role;
+    }
 
     public function getUserByEmailName(){
         // $select = "SELECT * FROM `User` WHERE `email` = '$this->email' OR `fullname`='$this->fullname' OR `lastname`='$this->lastname'";
@@ -93,16 +100,21 @@ class User {
 }
 
 public function getUsers(){
-    $query = "SELECT u.*, ur.role_id, r.name FROM user AS u INNER JOIN user_role AS ur ON u.id = ur.user_id INNER JOIN role AS r ON ur.role_id = r.id";
+    $query = "SELECT u.*, ur.role_id, r.name FROM user AS u INNER JOIN use_role AS ur ON u.id = ur.user_id INNER JOIN role AS r ON ur.role_id = r.id";
     $result = mysqli_query($this->database, $query);
     $users = array();
     while($row = $result->fetch_assoc()){
-        $user = new User($row['fullname'], $row['lastname'], $row['email'], $row['phone'], $row['password']);
-        
+        $user = new User($row['fullname'], $row['lastname'], $row['email'], $row['password'],$row['phone']);
+        $user->setRole($row['name']);
         $users[] = $user;
     }
     
     return $users;
+}
+
+public function deleteUser(){
+    $id=$_GET['id'];
+    $query="DELETE From user WHERE 'id'=$id"
 }
 }
 ?>

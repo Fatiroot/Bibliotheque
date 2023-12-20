@@ -1,3 +1,13 @@
+<?php
+session_start();
+// include __DIR__ . '/../../../App/Models/User.php';
+include __DIR__ . '/../../../vendor/autoload.php';
+
+use App\Models\User;
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +44,7 @@
 			<i class="fa fa-book"></i>
 			Books
 		</a>
-		<a href="../auth/login.php">
+		<a href="../../auth/login.php">
         <i class=" fa-solid fa-arrow-right-from-bracket"></i>
 			Log Out
 		</a>
@@ -72,7 +82,7 @@
 			</div>
 			<div class="clear"></div>
 			<div class="gains">
-            <table class="table">
+    <table class="table">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Fullname</th>
@@ -84,20 +94,34 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-     <td></td>
-     <td></td>
-     <td></td>
-     <td></td>
-     <td></td>
+	<?php
+	$user = new User('','', '', '', '');
+	$users = $user->getUsers();
+	
+	    if (empty($users)) {
+            echo '<tr><td colspan="6">No users found.</td></tr>';
+        } else {
+            foreach ($users as $user) {
+				// var_dump($user);
 
+	?>
+    <tr>
+     <td><?=$user->getFullName() ?></td>
+     <td><?=$user->getLastname()?></td>
+     <td><?=$user->getEmail()?></td>
+     <td><?=$user->getPhone()?></td>
+     <td><?=$user->getRole()?></td>
       <td>
-        <div>
+      
         <a href=""><i class="fa-solid fa-pen"></i></a>
-        <a href=""><i class="fa-solid fa-trash"></i></a>
-        </div>
+        <a href="" ><i class="fa-solid fa-trash"></i></a>
+      
       </td>
     </tr>
+	<?php
+	}
+}
+	?>
   </tbody>
 </table>
 			</div>
