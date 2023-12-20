@@ -7,6 +7,7 @@ use App\Models\User;
 
 
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -95,7 +96,7 @@ use App\Models\User;
   </thead>
   <tbody>
 	<?php
-	$user = new User('','', '', '', '');
+	$user = new User('','','', '', '', '');
 	$users = $user->getUsers();
 	
 	    if (empty($users)) {
@@ -112,10 +113,19 @@ use App\Models\User;
      <td><?=$user->getPhone()?></td>
      <td><?=$user->getRole()?></td>
       <td>
-      
-        <a href=""><i class="fa-solid fa-pen"></i></a>
+	<form action="edit.php" method="post">
+			<input type="hidden" name="id" value="<?=$user->getId()?>">
+			<button type="submit" name="edit" style="background: none; border: none;">
+			<a href=""><i class="fa-solid fa-pen"></i></a>
+			</button>
+	</form>
+
+    <form action="../../../App/Controllers/UserController.php" method="Post">
+		<input type="hidden" name="id" value="<?=$user->getId()?>">
+		<button type="submit" name="delete" style="background: none; border: none;">
         <a href="" ><i class="fa-solid fa-trash"></i></a>
-      
+		</button>
+    </form>
       </td>
     </tr>
 	<?php

@@ -18,14 +18,14 @@ class AuthController {
             $error = 'Passwords do not match';
         } else {
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-            $user = new User($fullname, $lastname, $email, $hashedPassword, $phone);
+            $user = new User(null,$fullname, $lastname, $email, $hashedPassword, $phone);
             $check = $user->getUserByEmailName();
             
             if ($check->num_rows > 0) {
                 $error = 'Username or email has already been taken';
             } else {
 
-                $user->insertUser(); // Passer les données correctement ici si nécessaire
+                $user->insertUser();
 
                 header("Location: ../../Views/auth/login.php");
                 exit();
@@ -40,7 +40,7 @@ class AuthController {
     
     public function login($email, $password) {
         $error = '';
-        $user = new User(null,null,$email,null,null);
+        $user = new User(null,null,null,$email,null,null);
         $result = $user->getUserByEmailName();
         
         if ($result->num_rows > 0) {
