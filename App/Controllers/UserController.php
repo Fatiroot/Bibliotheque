@@ -10,6 +10,10 @@ class UserController {
       $all = new User ($id, null, null, null, null, null);
       $all->delete();
     }
+    public function editUser($id){
+      $all = new User ($id, null, null, null, null, null);
+      $all->edit();
+    }
   }
 
 
@@ -20,3 +24,10 @@ class UserController {
         $deleteUser->deleteUser($id);
         header('location:../../views/admin/user/show.php');
     }
+    if (isset($_POST['edit'])) {
+      $id = $_POST['id']; 
+    
+     $editUser = new UserController();
+     $editUser->editUser($id);
+     header('location:../../views/admin/user/show.php');
+ }

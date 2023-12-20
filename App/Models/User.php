@@ -129,5 +129,11 @@ public function getUsers(){
         $result = mysqli_query($this->database, $querydelete);
         return $result;
       }
+      public function edit(){
+        $queryupdate="UPDATE `use_role` SET `role_id`={$this->role} WHERE id= {$this->id}";
+        $result = mysqli_query($this->database, $queryupdate);
+        return $result;
+      }
+
      }
 ?>
