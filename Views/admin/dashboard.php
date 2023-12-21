@@ -27,7 +27,7 @@
         <i class="fa-solid fa-user"></i>
 			Users
 		</a>
-		<a href="">
+		<a href="../admin/book/show.php">
 			<i class="fa fa-book"></i>
 			Books
 		</a>

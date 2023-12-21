@@ -3,7 +3,7 @@ session_start();
 // include __DIR__ . '/../../../App/Models/User.php';
 include __DIR__ . '/../../../vendor/autoload.php';
 
-use App\Models\User;
+use App\Models\Book;
 
 
 
@@ -86,42 +86,58 @@ use App\Models\User;
     <table class="table">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">Fullname</th>
-      <th scope="col">Fullname</th>
-      <th scope="col">Email</th>
-      <th scope="col">Phone</th>
-      <th scope="col">Role</th>
-      <th scope="col">Action</th>
+    <th scope="col" class="px-6 py-3">
+        title
+    </th>
+    <th scope="col" class="px-6 py-3">
+        author
+    </th>
+    <th scope="col" class="px-6 py-3">
+        genre
+    </th>
+    <th scope="col" class="px-6 py-3 ">
+        total_copies
+    </th>
+    <th scope="col" class="px-6 py-3 ">
+        available_copies
+    </th>
+    <th scope="col" class="px-6 py-3 ">
+        Actions
+    </th>
+
     </tr>
   </thead>
   <tbody>
 	<?php
-	$user = new User('','','', '', '', '');
-	$users = $user->getUsers();
+	$book = new Book('','','','','', '', '', '');
+	$books = $book->getbooks();
 	
-	    if (empty($users)) {
-            echo '<tr><td colspan="6">No users found.</td></tr>';
+	    if (empty($books)) {
+            echo '<tr><td colspan="6">No books found.</td></tr>';
         } else {
-            foreach ($users as $user) {
-				// var_dump($user);
+            foreach ($books as $book) {
+				// var_dump($book);
 
 	?>
     <tr>
-     <td><?=$user->getFullName() ?></td>
-     <td><?=$user->getLastname()?></td>
-     <td><?=$user->getEmail()?></td>
-     <td><?=$user->getPhone()?></td>
-     <td><?=$user->getRole()?></td>
+     <td><?=$book->getTitle() ?></td>
+     <td><?=$book->getAuthor()?></td>
+     <td><?=$book->getGenre()?></td>
+     <td><?=$book->getDescription()?></td>
+     <td><?=$book->getPublicationYear()?></td>
+     <td><?=$book->getTotalCopies()?></td>
+     <td><?=$book->getAvailableCopies()?></td>
+
       <td>
 	<form action="edit.php" method="post">
-			<input type="hidden" name="id" value="<?=$user->getId()?>">
+			<input type="hidden" name="id" value="<?=$book->getId()?>">
 			<button type="submit" name="edit" style="background: none; border: none;">
 			<a href=""><i class="fa-solid fa-pen"></i></a>
 			</button>
 	</form>
 
-    <form action="../../../App/Controllers/UserController.php" method="Post">
-		<input type="hidden" name="id" value="<?=$user->getId()?>">
+    <form action="../../../App/Controllers/BookController.php" method="Post">
+		<input type="hidden" name="id" value="<?=$book->getId()?>">
 		<button type="submit" name="delete" style="background: none; border: none;">
         <a href="" ><i class="fa-solid fa-trash"></i></a>
 		</button>
