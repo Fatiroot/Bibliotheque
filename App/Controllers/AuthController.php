@@ -53,7 +53,7 @@ class AuthController {
                     header("Location: ../../views/admin/dashboard.php");
                     exit();
                 } else {
-                    header('Location: ../../views/user/dashboard.php');
+                    header('Location: ../../views/client/dashboard.php');
                     exit();
                 }
             } else {

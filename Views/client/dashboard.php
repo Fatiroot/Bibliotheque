@@ -1,13 +1,3 @@
-
-<?php
-session_start();
-// include __DIR__ . '/../../../App/Models/User.php';
-include __DIR__ . '/../../../vendor/autoload.php';
-
-use App\Models\User;
-
-
-?>
 <!-- component -->
 <!DOCTYPE html>
 <html x-data="data()" lang="en">
@@ -15,8 +5,6 @@ use App\Models\User;
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet" />
     <!-- Favicon -->
@@ -41,14 +29,14 @@ use App\Models\User;
                         <div class="">
                             <img class="hidden h-24 w-24 rounded-full sm:block object-cover mr-2 border-4 border-green-400"
                                 src="https://image.flaticon.com/icons/png/512/149/149071.png" alt="">
-                            <p class="font-bold text-base  text-gray-400 pt-2 text-center w-24">ADMIN</p>
+                            <p class="font-bold text-base  text-gray-400 pt-2 text-center w-24">USER</p>
                         </div>
                     </div>
                     <div>
                         <ul class="mt-6 leading-10">
                             <li class="relative px-2 py-1 ">
                                 <a class="inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer hover:text-green-500" 
-                                    href="../dashboard.php">
+                                    href=" #">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -57,20 +45,9 @@ use App\Models\User;
                                     <span class="ml-4">DASHBOARD</span>
                                 </a>
                             </li>
-							<li class="relative px-2 py-1 ">
-                                <a class="inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer hover:text-green-500"
-                                    href="show.php">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-											<circle cx="12" cy="7" r="4" />
-											<path d="M5 22v-2a7 7 0 0 1 14 0v2" />
-											</svg>
-
-                                    <span class="ml-4">USER</span>
-                                </a>
-                            </li>
                             <li class="relative px-2 py-1 ">
                                 <a class="inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer hover:text-green-500"
-                                    href="../book/show.php">
+                                    href="book/show.php">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                             <rect x="4" y="2" width="16" height="20" rx="2" ry="2" stroke-width="2" />
                                             <line x1="12" y1="18" x2="12" y2="22" />
@@ -167,7 +144,7 @@ use App\Models\User;
                         <ul class="mt-6 leading-10">
                             <li class="relative px-2 py-1 ">
                                 <a class="inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer hover:text-green-500"
-                                    href="../dashboard.php">
+                                    href=" #">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -176,20 +153,9 @@ use App\Models\User;
                                     <span class="ml-4">DASHBOARD</span>
                                 </a>
                             </li> 
-							<li class="relative px-2 py-1 ">
-                                <a class="inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer hover:text-green-500"
-                                    href="show.php">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-											<circle cx="12" cy="7" r="4" />
-											<path d="M5 22v-2a7 7 0 0 1 14 0v2" />
-											</svg>
-
-                                    <span class="ml-4">USER</span>
-                                </a>
-                            </li>
                             <li class="relative px-2 py-1 ">
                                 <a class="inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer hover:text-green-500"
-                                    href="../user/show.php">
+                                    href="book/show.php">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                             <rect x="4" y="2" width="16" height="20" rx="2" ry="2" stroke-width="2" />
                                             <line x1="12" y1="18" x2="12" y2="22" />
@@ -362,7 +328,7 @@ use App\Models\User;
                                     </li>
                                     <li class="flex">
                                         <a class="text-white inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800"
-                                            href="../../auth/login.php">
+                                            href="../auth/login.php">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" fill="none"
                                                 viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -380,160 +346,130 @@ use App\Models\User;
             </header>
             <main class="">
                 <div class="grid mb-4 pb-10 px-8 mx-4 rounded-3xl bg-gray-100 border-4 border-green-400">
-				<a href="add.php" class="btn btn-primary mb-3">Add New book</a>
-                    <div class="col-span-12 mt-5">
-                        <div class="grid gap-2 grid-cols-1 lg:grid-cols-1">
-                            <div class="bg-white p-4 shadow-lg rounded-lg">
-                                <h1 class="font-bold text-base">Table</h1>
-                                <div class="mt-4">
-                                    <div class="flex flex-col">
-                                        <div class="-my-2 overflow-x-auto">
-                                            <div class="py-2 align-middle inline-block min-w-full">
+
+                    <div class="grid grid-cols-12 gap-6">
+                        <div class="grid grid-cols-12 col-span-12 gap-6 xxl:col-span-9">
+                            <div class="col-span-12 mt-8">
+                                <div class="flex items-center h-10 intro-y">
+                                    <h2 class="mr-5 text-lg font-medium truncate">Dashboard</h2>
+                                </div>
+                                <div class="grid grid-cols-12 gap-6 mt-5">
+                                    <a class="transform  hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white"
+                                        href="#">
+                                        <div class="p-5">
+                                            <div class="flex justify-between">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-blue-400"
+                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                                                </svg>
                                                 <div
-                                                    class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg bg-white">
-                                                    <table class="min-w-full divide-y divide-gray-200">
-                                                        <thead>
-                                                            <tr>
-                                                                <th
-                                                                    class="px-6 py-3 bg-gray-50 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                                    <div class="flex cursor-pointer">
-                                                                        <span class="mr-2">Fullname</span>
-                                                                    </div>
-                                                                </th>
-                                                                <th
-                                                                    class="px-6 py-3 bg-gray-50 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                                    <div class="flex cursor-pointer">
-                                                                        <span class="mr-2">Lastname</span>
-                                                                    </div>
-                                                                </th>
-                                                                <th
-                                                                    class="px-6 py-3 bg-gray-50 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                                    <div class="flex cursor-pointer">
-                                                                        <span class="mr-2">Email</span>
-                                                                    </div>
-                                                                </th>
-                                                                <th
-                                                                    class="px-6 py-3 bg-gray-50 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                                    <div class="flex cursor-pointer">
-                                                                        <span class="mr-2">Phone</span>
-                                                                    </div>
-                                                                </th>
-                                                                <th
-                                                                    class="px-6 py-3 bg-gray-50 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                                    <div class="flex cursor-pointer">
-                                                                        <span class="mr-2">Role</span>
-                                                                    </div>
-                                                                </th>
+                                                    class="bg-green-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
+                                                    <span class="flex items-center">30%</span>
+                                                </div>
+                                            </div>
+                                            <div class="ml-2 w-full flex-1">
+                                                <div>
+                                                    <div class="mt-3 text-3xl font-bold leading-8">4.510</div>
 
-                                                                <th
-                                                                    class="px-6 py-3 bg-gray-50 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                                    <div class="flex cursor-pointer">
-                                                                        <span class="mr-2">ACTION</span>
-                                                                    </div>
-                                                                </th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody class="bg-white divide-y divide-gray-200">
-                                                                      <?php
-                                                                        $user = new User('','','', '', '', '');
-																		$users = $user->getUsers();
-																		
-																			if (empty($users)) {
-																				echo '<tr><td colspan="6">No users found.</td></tr>';
-																			} else {
-																				foreach ($users as $user) {
-																					// var_dump($user);
-
-                                                                        ?>
-                                                            <tr>
-                                                                <td
-                                                                    class="px-6 py-4 whitespace-no-wrap text-sm leading-5">
-                                                                    <?=$user->getFullName() ?>
-                                                                </td>
-                                                                <td
-                                                                    class="px-6 py-4 whitespace-no-wrap text-sm leading-5">
-                                                                    <?=$user->getLastname()?>
-                                                                </td>
-                                                                <td
-                                                                    class="px-6 py-4 whitespace-no-wrap text-sm leading-5">
-                                                                    <?=$user->getEmail()?>
-                                                                   
-                                                                </td>
-                                                                <td
-                                                                    class="px-6 py-4 whitespace-no-wrap text-sm leading-5">
-                                                                    <?=$user->getPhone()?>
-                                                                   
-                                                                </td>
-                                                                <td
-                                                                    class="px-6 py-4 whitespace-no-wrap text-sm leading-5">
-                                                                    <?=$user->getRole()?>
-                                                                   
-                                                                </td>
-
-                                                                <td>
-																																<form action="edit.php" method="post">
-																			<input type="hidden" name="id" value="<?=$user->getId()?>">
-																			<button type="submit" name="editid" style="background: none; border: none;">
-																			<a href=""><i class="fa-solid fa-pen"></i></a>
-																			</button>
-																	</form>
-
-																	<form action="../../../App/Controllers/UserController.php" method="Post">
-																		<input type="hidden" name="id" value="<?=$user->getId()?>">
-																		<button type="submit" name="delete" style="background: none; border: none;">
-																		<a href="" ><i class="fa-solid fa-trash"></i></a>
-																		</button>
-																	</form>
-																		</td>
-                                                                    <!-- class="px-6 py-4 whitespace-no-wrap text-sm leading-5">
-                                                                    <div class="flex space-x-4">
-                                                                        <a href="#" class="text-blue-500 hover:text-blue-600">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            class="w-5 h-5 mr-1"
-                                                                            fill="none" viewBox="0 0 24 24"
-                                                                            stroke="currentColor">
-                                                                            <path stroke-linecap="round"
-                                                                                stroke-linejoin="round"
-                                                                                stroke-width="2"
-                                                                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                                                        </svg>
-                                                                        <p>Edit</p>
-                                                                        </a>
-                                                                        <a href="#" class="text-red-500 hover:text-red-600">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            class="w-5 h-5 mr-1 ml-3"
-                                                                            fill="none" viewBox="0 0 24 24"
-                                                                            stroke="currentColor">
-                                                                            <path stroke-linecap="round"
-                                                                                stroke-linejoin="round"
-                                                                                stroke-width="2"
-                                                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                                        </svg>
-                                                                        <p>Delete</p>
-                                                                        </a> -->
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            <?php
-                                                                    }
-                                                                    }
-                                                                    ?>
-                                                        </tbody>
-                                                    </table>
+                                                    <div class="mt-1 text-base text-gray-600">Item Sales</div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </a>
+                                    <a class="transform  hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white"
+                                        href="#">
+                                        <div class="p-5">
+                                            <div class="flex justify-between">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-yellow-400"
+                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                                </svg>
+                                                <div
+                                                    class="bg-red-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
+                                                    <span class="flex items-center">30%</span>
+                                                </div>
+                                            </div>
+                                            <div class="ml-2 w-full flex-1">
+                                                <div>
+                                                    <div class="mt-3 text-3xl font-bold leading-8">4.510</div>
+
+                                                    <div class="mt-1 text-base text-gray-600">Item Sales</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="transform  hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white"
+                                        href="#">
+                                        <div class="p-5">
+                                            <div class="flex justify-between">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-pink-600"
+                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
+                                                </svg>
+                                                <div
+                                                    class="bg-yellow-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
+                                                    <span class="flex items-center">30%</span>
+                                                </div>
+                                            </div>
+                                            <div class="ml-2 w-full flex-1">
+                                                <div>
+                                                    <div class="mt-3 text-3xl font-bold leading-8">4.510</div>
+
+                                                    <div class="mt-1 text-base text-gray-600">Item Sales</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="transform  hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white"
+                                        href="#">
+                                        <div class="p-5">
+                                            <div class="flex justify-between">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-green-400"
+                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
+                                                </svg>
+                                                <div
+                                                    class="bg-blue-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
+                                                    <span class="flex items-center">30%</span>
+                                                </div>
+                                            </div>
+                                            <div class="ml-2 w-full flex-1">
+                                                <div>
+                                                    <div class="mt-3 text-3xl font-bold leading-8">4.510</div>
+
+                                                    <div class="mt-1 text-base text-gray-600">Item Sales</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
                                 </div>
+                            </div>
+                            <div class="col-span-12 mt-5">
+                                <div class="grid gap-2 grid-cols-1 lg:grid-cols-2">
+                                    <div class="bg-white shadow-lg p-4" id="chartline"></div>
+                                    <div class="bg-white shadow-lg" id="chartpie"></div>
+                                </div>
+                            </div>
+                            <div class="col-span-12 mt-5">
+                                
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </main>
         </div>
-    </main>
-</div>
-</div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script>
         function data() {
@@ -569,7 +505,99 @@ use App\Models\User;
             }
         }
     </script>
-    
+    <script>
+        var chart = document.querySelector('#chartline')
+        var options = {
+            series: [{
+                name: 'TEAM A',
+                type: 'area',
+                data: [44, 55, 31, 47, 31, 43, 26, 41, 31, 47, 33]
+            }, {
+                name: 'TEAM B',
+                type: 'line',
+                data: [55, 69, 45, 61, 43, 54, 37, 52, 44, 61, 43]
+            }],
+            chart: {
+                height: 350,
+                type: 'line',
+                zoom: {
+                    enabled: false
+                }
+            },
+            stroke: {
+                curve: 'smooth'
+            },
+            fill: {
+                type: 'solid',
+                opacity: [0.35, 1],
+            },
+            labels: ['Dec 01', 'Dec 02', 'Dec 03', 'Dec 04', 'Dec 05', 'Dec 06', 'Dec 07', 'Dec 08', 'Dec 09 ',
+                'Dec 10', 'Dec 11'
+            ],
+            markers: {
+                size: 0
+            },
+            yaxis: [{
+                    title: {
+                        text: 'Series A',
+                    },
+                },
+                {
+                    opposite: true,
+                    title: {
+                        text: 'Series B',
+                    },
+                },
+            ],
+            tooltip: {
+                shared: true,
+                intersect: false,
+                y: {
+                    formatter: function(y) {
+                        if (typeof y !== "undefined") {
+                            return y.toFixed(0) + " points";
+                        }
+                        return y;
+                    }
+                }
+            }
+        };
+        var chart = new ApexCharts(chart, options);
+        chart.render();
+    </script>
+    <script>
+        var chart = document.querySelector('#chartpie')
+        var options = {
+            series: [44, 55, 67, 83],
+            chart: {
+                height: 350,
+                type: 'radialBar',
+            },
+            plotOptions: {
+                radialBar: {
+                    dataLabels: {
+                        name: {
+                            fontSize: '22px',
+                        },
+                        value: {
+                            fontSize: '16px',
+                        },
+                        total: {
+                            show: true,
+                            label: 'Total',
+                            formatter: function(w) {
+                                // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
+                                return 249
+                            }
+                        }
+                    }
+                }
+            },
+            labels: ['Apples', 'Oranges', 'Bananas', 'Berries'],
+        };
+        var chart = new ApexCharts(chart, options);
+        chart.render();
+    </script>
 </body>
 
 </html>
