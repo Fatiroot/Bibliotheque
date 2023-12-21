@@ -111,12 +111,24 @@ class Book
             $result = mysqli_query($this->database, $querydelete);
             return $result;
           }
-
-          public function edit(){
-            $queryupdate="UPDATE `book` SET `title`={$this->title},`author`={$this->author},`genre`={$this->genre},`description`={$this->description},`publication_year`={$this->publication_year},`total_copies`={$this->total_copies},`available_copies`={$this->available_copies} WHERE id= {$this->id}";
-            $result = mysqli_query($this->database, $queryupdate);
-            return $result;
+          public function getBookById($id){
+            $query="SELECT * From `book` WHERE id= {$this->id}";
+            $result = mysqli_query($this->database, $query);
+            return $result; 
           }
+          public function edit()
+{
+                $query = "UPDATE `book` SET `title`=?, `author`=?, `genre`=?, `description`=?, `publication_year`=?, `total_copies`=?, `available_copies`=? WHERE id=?";
+                $statement = $this->database->prepare($query);
+                $statement->bind_param('sssssiii', $this->title, $this->author, $this->genre, $this->description, $this->publication_year, $this->total_copies, $this->available_copies, $this->id);
+                $statement->execute();
+                }
+
+        //   public function edit(){
+        //     $queryupdate="UPDATE `book` SET `title`={$this->title},`author`={$this->author},`genre`={$this->genre},`description`={$this->description},`publication_year`={$this->publication_year},`total_copies`={$this->total_copies},`available_copies`={$this->available_copies} WHERE id= {$this->id}";
+        //     $result = mysqli_query($this->database,$queryupdate);
+        //     return $result;
+        //   }
 
 }
 

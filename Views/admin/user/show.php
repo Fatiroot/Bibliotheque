@@ -115,7 +115,7 @@ use App\Models\User;
       <td>
 	<form action="edit.php" method="post">
 			<input type="hidden" name="id" value="<?=$user->getId()?>">
-			<button type="submit" name="edit" style="background: none; border: none;">
+			<button type="submit" name="editid" style="background: none; border: none;">
 			<a href=""><i class="fa-solid fa-pen"></i></a>
 			</button>
 	</form>

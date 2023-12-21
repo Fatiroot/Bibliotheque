@@ -83,6 +83,7 @@ use App\Models\Book;
 			</div>
 			<div class="clear"></div>
 			<div class="gains">
+            <a href="add.php" class="btn btn-primary mb-3">Add New book</a>
     <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -94,6 +95,12 @@ use App\Models\Book;
     </th>
     <th scope="col" class="px-6 py-3">
         genre
+    </th>
+    <th scope="col" class="px-6 py-3 ">
+        description
+    </th>
+    <th scope="col" class="px-6 py-3 ">
+        publication year
     </th>
     <th scope="col" class="px-6 py-3 ">
         total_copies
@@ -131,7 +138,7 @@ use App\Models\Book;
       <td>
 	<form action="edit.php" method="post">
 			<input type="hidden" name="id" value="<?=$book->getId()?>">
-			<button type="submit" name="edit" style="background: none; border: none;">
+			<button type="submit" name="editId" style="background: none; border: none;">
 			<a href=""><i class="fa-solid fa-pen"></i></a>
 			</button>
 	</form>
