@@ -108,7 +108,7 @@ class Reservation
         $bookModel = new Book('', '', '', '', '', '', '', ''); // Revoir la logique pour créer un livre
         $book = $bookModel->getBookById($book_id);
     
-        if ($book && $book['available_copies'] > 0) {
+        if ($book instanceof mysqli_result && $book['available_copies'] > 0) {
             $newAvailableCopies = $book['available_copies'] - 1;
             $bookModel->updateAvailableCopies($book_id, $newAvailableCopies); // Vérifier que cette méthode est implémentée dans la classe Book
     
@@ -117,7 +117,7 @@ class Reservation
             $stmt = mysqli_prepare($this->database, $query);
             mysqli_stmt_bind_param($stmt, 'sssiii', $description, $reservation_date, $return_date, $is_returned, $user_id, $book_id);
             $result = mysqli_stmt_execute($stmt);
-            
+
     
             if ($result) {
                 return true;
