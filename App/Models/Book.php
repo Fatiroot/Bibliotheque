@@ -1,5 +1,5 @@
 <?php
-namespace APP\Models;
+namespace App\Models;
 include __DIR__ . '/../../vendor/autoload.php';
 use App\Database\Database;
 
@@ -119,7 +119,7 @@ class Book
         
             $stmt->execute();
             $result = $stmt->get_result();
-            
+
             return $result;
         }
         
@@ -141,7 +141,34 @@ class Book
         //     $result = mysqli_query($this->database,$queryupdate);
         //     return $result;
         //   }
+        public function updateAvailableCopies($id, $newAvailableCopies)
+    {
+        $query = "UPDATE book SET available_copies=$newAvailableCopies WHERE id=$id";
+        $result = mysqli_query($this->database, $query);
 
+        if (!$result) {
+            echo "Error updating available_copies in book table: " . mysqli_error($this->conn);
+            return false;
+        } else {
+            $this->setAvailableCopies($newAvailableCopies);
+            return true;
+        }
+    }
+
+
+public function searchBooks($searchQuery)
+{
+    $searchQuery = mysqli_real_escape_string($this->database, $searchQuery);
+
+    $query = "SELECT * FROM book WHERE title LIKE '%$searchQuery%' OR author LIKE '%$searchQuery%' OR genre LIKE '%$searchQuery%'";
+    $result = mysqli_query($this->database, $query);
+
+    if (!$result) {
+        echo "Error in query: " . mysqli_error($this->database);
+        return false;
+    } else {
+        return $result;
+    }
 }
-
+}
 ?>

@@ -1,10 +1,11 @@
 <?php
-
+session_start();
 // include __DIR__ . '/../../../App/Models/User.php';
 include __DIR__ . '/../../../vendor/autoload.php';
 
 
 use App\Controllers\BookController;
+
 
 $id=$_GET['reserverId'];
 $bookController = new BookController();
@@ -20,8 +21,11 @@ $Book = $bookController->selectBookById($id);
     <title>Document</title>
   </head>
   <body>
-             <form method="POST" action="../../../App/Controllers/ReservationController.php" enctype="multipart/form-data" style="width:50vw; min-width:300px;">
-                <div class="mb-3">
+  <form method="POST" action="../../../App/Controllers/ReservationController.php" enctype="multipart/form-data" style="width:50vw; min-width:300px;">
+            <div class="col">
+                        <input type="hidden" class="form-control" name="user_id" value="<?= $_SESSION['user_id'] ?>">
+                    </div>    
+            <div class="mb-3">
                     <label class="form-label">Choose a book:</label>
                     <select name="book" class="form-select" required>
                             <option value="<?= $Book['id']; ?>"><?= $Book['title']; ?></option>
@@ -42,9 +46,12 @@ $Book = $bookController->selectBookById($id);
 
 
                 <div class="row ms-1 mt-4 justify-content-center">
-                    <button type="submit" name="add_reservation_submit" class="btn btn-success col-3 me-3">Save changes</button>
-                    <a href="showBooks.php" class="btn btn-danger col-3">Cancel</a>
+                    <button type="submit" name="reserve" class="btn btn-success col-3 me-3">Save changes</button>
+                    <a href="show.php" class="btn btn-danger col-3">Cancel</a>
                 </div>
+
+
+
 
             </form>
   </body>

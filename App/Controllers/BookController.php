@@ -2,7 +2,7 @@
 namespace App\Controllers;
 include __DIR__ . '/../../vendor/autoload.php';
 use App\Models\book;
-session_start();
+
 class BookController {
     public function addBook($title,$author,$genre,$description,$publication_year,$total_copies,$available_copies) {
         $book = new Book(null,$title,$author,$genre,$description,$publication_year,$total_copies,$available_copies);
@@ -23,8 +23,16 @@ class BookController {
           $allBooks = new Book($id,$title, $author, $genre, $description, $publication_year, $total_copies, $available_copies);
            $allBooks->edit();
       }
+      public function searchBooks($searchQuery)
+      {
+          $book = new Book('', '', '', '', '', '', '', '');
+          $searchResults = $book->searchBooks($searchQuery);
+  
+          return $searchResults;
+      }
+  }
 
-}
+
 if(isset($_POST['add'])){
     $bookCon = new BookController();
     $bookCon->addBook($_POST['title'],$_POST['author'],$_POST['genre'],$_POST['description'],$_POST['publication_year'],$_POST['total_copies'],$_POST['available_copies']);
