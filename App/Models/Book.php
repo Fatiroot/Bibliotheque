@@ -123,11 +123,7 @@ class Book
             return $result;
         }
         
-        //   public function getBookById($id){
-        //     $query="SELECT * From `book` WHERE id= {$this->id}";
-        //     $result = mysqli_query($this->database, $query);
-        //     return $result; 
-        //   }
+      
           public function edit()
 {
                 $query = "UPDATE `book` SET `title`=?, `author`=?, `genre`=?, `description`=?, `publication_year`=?, `total_copies`=?, `available_copies`=? WHERE id=?";
@@ -136,11 +132,7 @@ class Book
                 $statement->execute();
                 }
 
-        //   public function edit(){
-        //     $queryupdate="UPDATE `book` SET `title`={$this->title},`author`={$this->author},`genre`={$this->genre},`description`={$this->description},`publication_year`={$this->publication_year},`total_copies`={$this->total_copies},`available_copies`={$this->available_copies} WHERE id= {$this->id}";
-        //     $result = mysqli_query($this->database,$queryupdate);
-        //     return $result;
-        //   }
+       
         public function updateAvailableCopies($id, $newAvailableCopies)
     {
         $query = "UPDATE book SET available_copies=$newAvailableCopies WHERE id=$id";
