@@ -111,11 +111,23 @@ class Book
             $result = mysqli_query($this->database, $querydelete);
             return $result;
           }
-          public function getBookById($id){
-            $query="SELECT * From `book` WHERE id= {$this->id}";
-            $result = mysqli_query($this->database, $query);
-            return $result; 
-          }
+
+          public function getBookById($id) {
+            $query = "SELECT * FROM `book` WHERE id = ?";
+            $stmt = $this->database->prepare($query);
+            $stmt->bind_param("i", $id); // Assuming id is an integer, adjust type accordingly
+        
+            $stmt->execute();
+            $result = $stmt->get_result();
+            
+            return $result;
+        }
+        
+        //   public function getBookById($id){
+        //     $query="SELECT * From `book` WHERE id= {$this->id}";
+        //     $result = mysqli_query($this->database, $query);
+        //     return $result; 
+        //   }
           public function edit()
 {
                 $query = "UPDATE `book` SET `title`=?, `author`=?, `genre`=?, `description`=?, `publication_year`=?, `total_copies`=?, `available_copies`=? WHERE id=?";

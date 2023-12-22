@@ -4,6 +4,12 @@ session_start();
 include __DIR__ . '/../../../vendor/autoload.php';
 
 use App\Models\Book;
+use App\Models\User;
+
+if (!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn']) {
+    header("location: ../../auth/login.php");
+    exit;
+}
 
 
 
@@ -134,7 +140,8 @@ use App\Models\Book;
             x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
             x-transition:leave="transition ease-in-out duration-150" x-transition:leave-start="opacity-100"
             x-transition:leave-end="opacity-0"
-            class="fixed inset-0 z-10 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center"></div>
+            class="fixed inset-0 z-10 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center">
+        </div>
 
         <aside
             class="fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto  bg-gray-900 dark:bg-gray-800 md:hidden"
@@ -355,145 +362,72 @@ use App\Models\Book;
 
                 </div>
             </header>
-            <main class="">
-                <!-- modal -->
-            
-
-<!-- Main modal -->
-<div id="crud-modal" tabindex="-1" aria-hidden="true" class="modal hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-    <div class="relative p-4 w-full max-w-md max-h-full">
-
-        <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-            <!-- Modal header -->
-            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                    Create New Product
-                </h3>
-                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
-                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                    </svg>
-                    <span class="sr-only">Close modal</span>
-                </button>
-            </div>
-            <!-- Modal body -->
-            <form class="p-4 md:p-5">
-                <div class="grid gap-4 mb-4 grid-cols-2">
-                    <div class="col-span-2">
-                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-                        <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="">
-                    </div>
-                    <div class="col-span-2 sm:col-span-1">
-                        <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
-                        <input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="$2999" required="">
-                    </div>
-                    <div class="col-span-2 sm:col-span-1">
-                        <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-                        <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            <option selected="">Select category</option>
-                            <option value="TV">TV/Monitors</option>
-                            <option value="PC">PC</option>
-                            <option value="GA">Gaming/Console</option>
-                            <option value="PH">Phones</option>
-                        </select>
-                    </div>
-                    <div class="col-span-2">
-                        <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Description</label>
-                        <textarea id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write product description here"></textarea>                    
-                    </div>
-                </div>
-                <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
-                    Add reservation
-                </button>
-            </form>
-        </div>
-
-    </div>
-</div> 
-<!-- ****** -->
+            <main class=""> 
                 <div class="grid mb-4 pb-10 px-8 mx-4 rounded-3xl bg-gray-100 border-4 border-green-400">
-                    <div class="col-span-12 mt-5">
-                    <div class="col-span-12 mt-5">
-    <div class="grid gap-2 grid-cols-1 lg:grid-cols-1">
-        <?php
-        $book = new Book('', '', '', '', '', '', '', '');
-        $books = $book->getbooks();
+                <div class="col-span-12 mt-5">
+                                
+                    <div class="grid gap-2 grid-cols-1 lg:grid-cols-1">
+                        <?php
+                        $book = new Book('', '', '', '', '', '', '', '');
+                        $books = $book->getbooks();
 
-        if (empty($books)) {
-            echo '<p>No books found.</p>';
-        } else {
-            foreach ($books as $book) {
-                ?>
-                <div class="bg-white p-4 shadow-lg rounded-lg mb-4">
-                    <h1 class="font-bold text-base"><?=$book->getTitle()?></h1>
-                    <div class="mt-4">
-                        <div class="flex flex-col">
-                            <div class="-my-2 overflow-x-auto">
-                                <div class="py-2 align-middle inline-block min-w-full">
-                                    <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg bg-white">
-                                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                                            <div class="sm:col-span-1">
-                                                <div class="px-4 py-5 sm:px-6">
-                                                    <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
-                                                        <div class="sm:col-span-1">
-                                                            <dt class="text-sm leading-5 font-medium text-gray-500">Author</dt>
-                                                            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:col-span-2"><?=$book->getAuthor()?></dd>
+                        if (empty($books)) {
+                            echo '<p>No books found.</p>';
+                        } else {
+                            foreach ($books as $book) {
+                                ?>
+                                <div class="bg-white p-4 shadow-lg rounded-lg mb-4">
+                                    <h1 class="font-bold text-base"><?=$book->getTitle()?></h1>
+                                    <div class="mt-4">
+                                        <div class="flex flex-col">
+                                            <div class="-my-2 overflow-x-auto">
+                                                <div class="py-2 align-middle inline-block min-w-full">
+                                                    <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg bg-white">
+                                                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                                                            <div class="sm:col-span-1">
+                                                                <div class="px-4 py-5 sm:px-6">
+                                                                    <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
+                                                                        <div class="sm:col-span-1">
+                                                                            <dt class="text-sm leading-5 font-medium text-gray-500">Author</dt>
+                                                                            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:col-span-2"><?=$book->getAuthor()?></dd>
+                                                                        </div>
+                                                                        <div class="sm:col-span-1">
+                                                                            <dt class="text-sm leading-5 font-medium text-gray-500">Genre</dt>
+                                                                            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:col-span-2"><?=$book->getGenre()?></dd>
+                                                                        </div>
+                                                                        <div class="sm:col-span-1">
+                                                                            <dt class="text-sm leading-5 font-medium text-gray-500">Description</dt>
+                                                                            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:col-span-2"><?=$book->getDescription()?></dd>
+                                                                        </div>
+                                                                        <div class="sm:col-span-1">
+                                                                            <dt class="text-sm leading-5 font-medium text-gray-500">Publication Year</dt>
+                                                                            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:col-span-2"><?=$book->getPublicationYear()?></dd>
+                                                                        </div>
+                                                                        <div class="sm:col-span-1">
+                                                                            <a href="reservation.php?reserverId=<?=$book->getId()?>" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                                                Reaserver
+                                                                            </a>
+                                                                        </div>
+                                                                    </dl>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div class="sm:col-span-1">
-                                                            <dt class="text-sm leading-5 font-medium text-gray-500">Genre</dt>
-                                                            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:col-span-2"><?=$book->getGenre()?></dd>
-                                                        </div>
-                                                        <div class="sm:col-span-1">
-                                                            <dt class="text-sm leading-5 font-medium text-gray-500">Description</dt>
-                                                            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:col-span-2"><?=$book->getDescription()?></dd>
-                                                        </div>
-                                                        <div class="sm:col-span-1">
-                                                            <dt class="text-sm leading-5 font-medium text-gray-500">Publication Year</dt>
-                                                            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:col-span-2"><?=$book->getPublicationYear()?></dd>
-                                                        </div>
-                                                        <div class="sm:col-span-1">
-                                                            <dt class="text-sm leading-5 font-medium text-gray-500">Total Copies</dt>
-                                                            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:col-span-2"><?=$book->getTotalCopies()?></dd>
-                                                        </div>
-                                                        <div class="sm:col-span-1">
-                                                            <dt class="text-sm leading-5 font-medium text-gray-500">Available Copies</dt>
-                                                            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:col-span-2"><?=$book->getAvailableCopies()?></dd>
-                                                        </div>
-                                                    </dl>
-                                                </div>
-                                            </div>
-                                            <div class="sm:col-span-1">
-                                                <div class="flex space-x-4 px-4 pb-5 sm:px-6">
-                                                  <!-- Modal toggle -->
-                                                    <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-                                                    Reserver
-                                                    </button>
-                                                    
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
+                                </div>          
+                        <?php
+                            }
+                        }
+                        ?>
                     </div>
                 </div>
-        <?php
-            }
-        }
-        ?>
-    </div>
-</div>
+                </div>
+            </main>
+      </div>
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-</div>
-</div>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script>
         function data() {
@@ -530,53 +464,53 @@ use App\Models\Book;
         }
     </script>
     <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const modalButtons = document.querySelectorAll('[data-modal-toggle]');
-    const modals = document.querySelectorAll('.modal');
+        document.addEventListener('DOMContentLoaded', function() {
+            const modalButtons = document.querySelectorAll('[data-modal-toggle]');
+            const modals = document.querySelectorAll('.modal');
 
-    modalButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const targetModalId = button.getAttribute('data-modal-target');
-            const targetModal = document.getElementById(targetModalId);
+            modalButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetModalId = button.getAttribute('data-modal-target');
+                    const targetModal = document.getElementById(targetModalId);
 
-            if (targetModal) {
-                toggleModal(targetModal);
+                    if (targetModal) {
+                        toggleModal(targetModal);
+                    }
+                });
+            });
+
+            modals.forEach(modal => {
+                modal.addEventListener('click', function(event) {
+                    if (event.target === modal) {
+                        toggleModal(modal);
+                    }
+                });
+            });
+
+            function toggleModal(modal) {
+                modal.classList.toggle('hidden');
+                modal.classList.toggle('flex');
+                document.body.classList.toggle('overflow-hidden');
+
+                if (!modal.classList.contains('hidden')) {
+                    modal.addEventListener('click', closeModalOutside);
+                } else {
+                    modal.removeEventListener('click', closeModalOutside);
+                }
+            }
+
+            function closeModalOutside(event) {
+                const modalContent = this.querySelector('.modal-content');
+                if (!modalContent.contains(event.target)) {
+                    toggleModal(this);
+                }
             }
         });
-    });
-
-    modals.forEach(modal => {
-        modal.addEventListener('click', function(event) {
-            if (event.target === modal) {
-                toggleModal(modal);
-            }
-        });
-    });
-
-    function toggleModal(modal) {
-        modal.classList.toggle('hidden');
-        modal.classList.toggle('flex');
-        document.body.classList.toggle('overflow-hidden');
-
-        if (!modal.classList.contains('hidden')) {
-            modal.addEventListener('click', closeModalOutside);
-        } else {
-            modal.removeEventListener('click', closeModalOutside);
-        }
-    }
-
-    function closeModalOutside(event) {
-        const modalContent = this.querySelector('.modal-content');
-        if (!modalContent.contains(event.target)) {
-            toggleModal(this);
-        }
-    }
-});
 
 
 
 
-    </script>
+   </script>
     
 </body>
 

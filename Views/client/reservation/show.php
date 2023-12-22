@@ -1,10 +1,13 @@
-
 <?php
 session_start();
 // include __DIR__ . '/../../../App/Models/User.php';
 include __DIR__ . '/../../../vendor/autoload.php';
 
 use App\Models\Book;
+
+
+
+
 ?>
 <!-- component -->
 <!DOCTYPE html>
@@ -13,8 +16,6 @@ use App\Models\Book;
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet" />
     <!-- Favicon -->
@@ -39,7 +40,7 @@ use App\Models\Book;
                         <div class="">
                             <img class="hidden h-24 w-24 rounded-full sm:block object-cover mr-2 border-4 border-green-400"
                                 src="https://image.flaticon.com/icons/png/512/149/149071.png" alt="">
-                            <p class="font-bold text-base  text-gray-400 pt-2 text-center w-24">ADMIN</p>
+                            <p class="font-bold text-base  text-gray-400 pt-2 text-center w-24">USER</p>
                         </div>
                     </div>
                     <div>
@@ -55,26 +56,26 @@ use App\Models\Book;
                                     <span class="ml-4">DASHBOARD</span>
                                 </a>
                             </li>
-							<li class="relative px-2 py-1 ">
-                                <a class="inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer hover:text-green-500"
-                                    href="../user/show.php">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-											<circle cx="12" cy="7" r="4" />
-											<path d="M5 22v-2a7 7 0 0 1 14 0v2" />
-											</svg>
-
-                                    <span class="ml-4">USER</span>
-                                </a>
-                            </li>
                             <li class="relative px-2 py-1 ">
                                 <a class="inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer hover:text-green-500"
-                                    href="#">
+                                    href="book/show.php">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                             <rect x="4" y="2" width="16" height="20" rx="2" ry="2" stroke-width="2" />
                                             <line x1="12" y1="18" x2="12" y2="22" />
                                             <line x1="9" y1="15" x2="15" y2="15" />
                                     </svg>
                                     <span class="ml-4">BOOK</span>
+                                </a>
+                            </li>
+                            <li class="relative px-2 py-1 ">
+                                <a class="inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer hover:text-green-500"
+                                    href=" #">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <rect x="4" y="2" width="16" height="20" rx="2" ry="2" stroke-width="2" />
+                                            <line x1="12" y1="18" x2="12" y2="22" />
+                                            <line x1="9" y1="15" x2="15" y2="15" />
+                                    </svg>
+                                    <span class="ml-4">RESERVATION</span>
                                 </a>
                             </li>
                             <li class="relative px-2 py-1" x-data="{ Open : false  }">
@@ -174,17 +175,6 @@ use App\Models\Book;
                                     <span class="ml-4">DASHBOARD</span>
                                 </a>
                             </li> 
-							<li class="relative px-2 py-1 ">
-                                <a class="inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer hover:text-green-500"
-                                    href="../user/show.php">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-											<circle cx="12" cy="7" r="4" />
-											<path d="M5 22v-2a7 7 0 0 1 14 0v2" />
-											</svg>
-
-                                    <span class="ml-4">USER</span>
-                                </a>
-                            </li>
                             <li class="relative px-2 py-1 ">
                                 <a class="inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer hover:text-green-500"
                                     href=" #">
@@ -373,171 +363,68 @@ use App\Models\Book;
                             </template>
                         </li>
                     </ul>
+
                 </div>
             </header>
             <main class="">
                 <div class="grid mb-4 pb-10 px-8 mx-4 rounded-3xl bg-gray-100 border-4 border-green-400">
-				<a href="add.php" class="btn btn-primary mb-3">Add New book</a>
                     <div class="col-span-12 mt-5">
-                        <div class="grid gap-2 grid-cols-1 lg:grid-cols-1">
-                            <div class="bg-white p-4 shadow-lg rounded-lg">
-                                <h1 class="font-bold text-base">Table</h1>
-                                <div class="mt-4">
-                                    <div class="flex flex-col">
-                                        <div class="-my-2 overflow-x-auto">
-                                            <div class="py-2 align-middle inline-block min-w-full">
-                                                <div
-                                                    class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg bg-white">
-                                                    <table class="min-w-full divide-y divide-gray-200">
-                                                        <thead>
-                                                            <tr>
-                                                                <th
-                                                                    class="px-6 py-3 bg-gray-50 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                                    <div class="flex cursor-pointer">
-                                                                        <span class="mr-2">title</span>
-                                                                    </div>
-                                                                </th>
-                                                                <th
-                                                                    class="px-6 py-3 bg-gray-50 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                                    <div class="flex cursor-pointer">
-                                                                        <span class="mr-2">author</span>
-                                                                    </div>
-                                                                </th>
-                                                                <th
-                                                                    class="px-6 py-3 bg-gray-50 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                                    <div class="flex cursor-pointer">
-                                                                        <span class="mr-2">genre</span>
-                                                                    </div>
-                                                                </th>
-                                                                <th
-                                                                    class="px-6 py-3 bg-gray-50 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                                    <div class="flex cursor-pointer">
-                                                                        <span class="mr-2">description</span>
-                                                                    </div>
-                                                                </th>
-                                                                <th
-                                                                    class="px-6 py-3 bg-gray-50 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                                    <div class="flex cursor-pointer">
-                                                                        <span class="mr-2"> publication year</span>
-                                                                    </div>
-                                                                </th>
-                                                                <th
-                                                                    class="px-6 py-3 bg-gray-50 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                                    <div class="flex cursor-pointer">
-                                                                        <span class="mr-2">total_copies</span>
-                                                                    </div>
-                                                                </th>
-                                                                <th
-                                                                    class="px-6 py-3 bg-gray-50 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                                    <div class="flex cursor-pointer">
-                                                                        <span class="mr-2">available_copies</span>
-                                                                    </div>
-                                                                </th>
-                                                                <th
-                                                                    class="px-6 py-3 bg-gray-50 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                                    <div class="flex cursor-pointer">
-                                                                        <span class="mr-2">ACTION</span>
-                                                                    </div>
-                                                                </th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody class="bg-white divide-y divide-gray-200">
-                                                                                                                            <?php
-                                                                        $book = new Book('','','','','', '', '', '');
-                                                                        $books = $book->getbooks();
-                                                                        
-                                                                            if (empty($books)) {
-                                                                                echo '<tr><td colspan="6">No books found.</td></tr>';
-                                                                            } else {
-                                                                                foreach ($books as $book) {
-                                                                                    // var_dump($book);
+                    <div class="col-span-12 mt-5">
+    <div class="grid gap-2 grid-cols-1 lg:grid-cols-1">
+        <?php
+        $book = new Book('', '', '', '', '', '', '', '');
+        $books = $book->getbooks();
 
-                                                                        ?>
-                                                            <tr>
-                                                                <td
-                                                                    class="px-6 py-4 whitespace-no-wrap text-sm leading-5">
-                                                                    <?=$book->getTitle() ?>
-                                                                </td>
-                                                                <td
-                                                                    class="px-6 py-4 whitespace-no-wrap text-sm leading-5">
-                                                                    <?=$book->getAuthor()?>
-                                                                </td>
-                                                                <td
-                                                                    class="px-6 py-4 whitespace-no-wrap text-sm leading-5">
-                                                                    <?=$book->getGenre()?>
-                                                                   
-                                                                </td>
-                                                                <td
-                                                                    class="px-6 py-4 whitespace-no-wrap text-sm leading-5">
-                                                                    <?=$book->getDescription()?>
-                                                                   
-                                                                </td>
-                                                                <td
-                                                                    class="px-6 py-4 whitespace-no-wrap text-sm leading-5">
-                                                                    <?=$book->getPublicationYear()?>
-                                                                   
-                                                                </td>
-                                                                <td
-                                                                    class="px-6 py-4 whitespace-no-wrap text-sm leading-5">
-                                                                    <?=$book->getTotalCopies()?>
-                                                                   
-                                                                </td>
-                                                                <td
-                                                                    class="px-6 py-4 whitespace-no-wrap text-sm leading-5">
-                                                                    <?=$book->getAvailableCopies()?>
-                                                                   
-                                                                </td>
-                                                                <td>
-													            
-																					<form action="edit.php" method="post">
-																							<input type="hidden" name="id" value="<?=$book->getId()?>">
-																							<button type="submit" name="editId" style="background: none; border: none;">
-																							<a href=""><i class="fa-solid fa-pen"></i></a>
-																							</button>
-																					</form>
-
-																					<form action="../../../App/Controllers/BookController.php" method="Post">
-																						<input type="hidden" name="id" value="<?=$book->getId()?>">
-																						<button type="submit" name="delete" style="background: none; border: none;">
-																						<a href="" ><i class="fa-solid fa-trash"></i></a>
-																						</button>
-																					</form>
-																					</td>
-                                                                    <!-- class="px-6 py-4 whitespace-no-wrap text-sm leading-5">
-                                                                    <div class="flex space-x-4">
-                                                                        <a href="#" class="text-blue-500 hover:text-blue-600">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            class="w-5 h-5 mr-1"
-                                                                            fill="none" viewBox="0 0 24 24"
-                                                                            stroke="currentColor">
-                                                                            <path stroke-linecap="round"
-                                                                                stroke-linejoin="round"
-                                                                                stroke-width="2"
-                                                                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                                                        </svg>
-                                                                        <p>Edit</p>
-                                                                        </a>
-                                                                        <a href="#" class="text-red-500 hover:text-red-600">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            class="w-5 h-5 mr-1 ml-3"
-                                                                            fill="none" viewBox="0 0 24 24"
-                                                                            stroke="currentColor">
-                                                                            <path stroke-linecap="round"
-                                                                                stroke-linejoin="round"
-                                                                                stroke-width="2"
-                                                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                                        </svg>
-                                                                        <p>Delete</p>
-                                                                        </a> -->
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            <?php
-                                                                    }
-                                                                    }
-                                                                    ?>
-                                                        </tbody>
-                                                    </table>
+        if (empty($books)) {
+            echo '<p>No books found.</p>';
+        } else {
+            foreach ($books as $book) {
+                ?>
+                <div class="bg-white p-4 shadow-lg rounded-lg mb-4">
+                    <h1 class="font-bold text-base"><?=$book->getTitle()?></h1>
+                    <div class="mt-4">
+                        <div class="flex flex-col">
+                            <div class="-my-2 overflow-x-auto">
+                                <div class="py-2 align-middle inline-block min-w-full">
+                                    <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg bg-white">
+                                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                                            <div class="sm:col-span-1">
+                                                <div class="px-4 py-5 sm:px-6">
+                                                    <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
+                                                        <div class="sm:col-span-1">
+                                                            <dt class="text-sm leading-5 font-medium text-gray-500">Author</dt>
+                                                            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:col-span-2"><?=$book->getAuthor()?></dd>
+                                                        </div>
+                                                        <div class="sm:col-span-1">
+                                                            <dt class="text-sm leading-5 font-medium text-gray-500">Genre</dt>
+                                                            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:col-span-2"><?=$book->getGenre()?></dd>
+                                                        </div>
+                                                        <div class="sm:col-span-1">
+                                                            <dt class="text-sm leading-5 font-medium text-gray-500">Description</dt>
+                                                            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:col-span-2"><?=$book->getDescription()?></dd>
+                                                        </div>
+                                                        <div class="sm:col-span-1">
+                                                            <dt class="text-sm leading-5 font-medium text-gray-500">Publication Year</dt>
+                                                            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:col-span-2"><?=$book->getPublicationYear()?></dd>
+                                                        </div>
+                                                        <div class="sm:col-span-1">
+                                                            <dt class="text-sm leading-5 font-medium text-gray-500">Total Copies</dt>
+                                                            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:col-span-2"><?=$book->getTotalCopies()?></dd>
+                                                        </div>
+                                                        <div class="sm:col-span-1">
+                                                            <dt class="text-sm leading-5 font-medium text-gray-500">Available Copies</dt>
+                                                            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:col-span-2"><?=$book->getAvailableCopies()?></dd>
+                                                        </div>
+                                                    </dl>
+                                                </div>
+                                            </div>
+                                            <div class="sm:col-span-1">
+                                                <div class="flex space-x-4 px-4 pb-5 sm:px-6">
+                                                  <!-- Modal toggle -->
+                                                    <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+                                                    Reserver
+                                                    </button>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -547,11 +434,20 @@ use App\Models\Book;
                         </div>
                     </div>
                 </div>
+        <?php
+            }
+        }
+        ?>
+    </div>
+</div>
+
+                    </div>
+                </div>
             </div>
         </div>
     </main>
-
-
+</div>
+</div>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script>
         function data() {
@@ -586,6 +482,54 @@ use App\Models\Book;
                
             }
         }
+    </script>
+    <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const modalButtons = document.querySelectorAll('[data-modal-toggle]');
+    const modals = document.querySelectorAll('.modal');
+
+    modalButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const targetModalId = button.getAttribute('data-modal-target');
+            const targetModal = document.getElementById(targetModalId);
+
+            if (targetModal) {
+                toggleModal(targetModal);
+            }
+        });
+    });
+
+    modals.forEach(modal => {
+        modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                toggleModal(modal);
+            }
+        });
+    });
+
+    function toggleModal(modal) {
+        modal.classList.toggle('hidden');
+        modal.classList.toggle('flex');
+        document.body.classList.toggle('overflow-hidden');
+
+        if (!modal.classList.contains('hidden')) {
+            modal.addEventListener('click', closeModalOutside);
+        } else {
+            modal.removeEventListener('click', closeModalOutside);
+        }
+    }
+
+    function closeModalOutside(event) {
+        const modalContent = this.querySelector('.modal-content');
+        if (!modalContent.contains(event.target)) {
+            toggleModal(this);
+        }
+    }
+});
+
+
+
+
     </script>
     
 </body>

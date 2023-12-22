@@ -75,12 +75,13 @@ class Reservation
     {
         $query = "INSERT INTO `reservation`( `description`, `reservation_date`, `return_date`, `is_returned`, `user_id`, `book_id`)
         VALUES ('$this->description','$this->reservation_date','$this->return_date','$this->is_returned','$this->user_id','$this->book_id')";
-        $result = mysqli_query($this->database, $query);
+        $result = mysqli_query($this->database,$query);
         $sql = "UPDATE book set available_copies= available_copies-1 where id =?";
         $updateStmt = $this->database->prepare($sql);
         $updateStmt->execute($this->id);
     
     }
+
 
 }
 

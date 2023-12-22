@@ -46,6 +46,7 @@ class AuthController {
         if ($result->num_rows > 0) {
             $userData = $result->fetch_assoc();
             if (password_verify($password, $userData['password'])) {
+                $_SESSION['loggedIn'] = true;
                 $_SESSION['user_id'] = $userData['id'];
                 $_SESSION['role'] = $userData['role_id']; 
                  $role=$_SESSION['role'] ;
